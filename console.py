@@ -1,11 +1,6 @@
 #!/usr/bin/python3
 """This module defines the entry point of the command interpreter.
 
-It allows us to interactively and non-interactively:
-    - create a data model
-    - manage (create, update, destroy, etc) objects via a console / interpreter
-    - store and persist objects to a file (JSON file)
-
 Typical usage example:
 
     $ ./console
@@ -39,12 +34,6 @@ current_classes = {'BaseModel': BaseModel, 'User': User,
 
 class HBNBCommand(cmd.Cmd):
     """The command interpreter.
-
-    This class represents the command interpreter, and the control center
-    of this project. It defines function handlers for all commands inputted
-    in the console and calls the appropriate storage engine APIs to manipulate
-    application data / models.
-
     """
 
     prompt = "(hbnb) "
@@ -208,14 +197,17 @@ class HBNBCommand(cmd.Cmd):
 def validate_classname(args, check_id=False):
     """Runs checks on args to validate classname entry.
     """
+    a = "** class name missing **"
+    b = "** class doesn't exist **"
+    c = "** instance id missing **"
     if len(args) < 1:
-        print("** class name missing **")
+        print(a)
         return False
     if args[0] not in current_classes.keys():
-        print("** class doesn't exist **")
+        print(b)
         return False
     if len(args) < 2 and check_id:
-        print("** instance id missing **")
+        print(c)
         return False
     return True
 
@@ -223,11 +215,13 @@ def validate_classname(args, check_id=False):
 def validate_attrs(args):
     """Runs checks on args to validate classname attributes and values.
     """
+    d = "** attribute name missing **"
+    e = "** value missing **"
     if len(args) < 3:
-        print("** attribute name missing **")
+        print(d)
         return False
     if len(args) < 4:
-        print("** value missing **")
+        print(e)
         return False
     return True
 
