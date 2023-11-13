@@ -177,7 +177,7 @@ class HBNBCommand(cmd.Cmd):
             try:
                 payload: dict = json.loads(match_json[0])
             except Exception:
-                print("** invalid syntax")
+                print("** invalid syntax **")
                 return
             for k, v in payload.items():
                 setattr(req_instance, k, v)
